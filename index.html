@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سمكيتو - مطعم مأكولات بحرية فاخر</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; color: #333; background: #f0f8ff; overflow-x: hidden; }
+        
+        /* Hero with Luxury Underwater Background */
+        #hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 80, 150, 0.6), rgba(0, 80, 150, 0.6)), url('https://media.cntravellerme.com/photos/659e6c6e1c08bc2985f9c5ef/4:3/w_5248,h_3936,c_limit/CONRAD%20MALDIVES%20RANGALI%20ISLAND_F&B_Ithaa%20Undersea%20Restaurant_Hero_credit%20Justin%20Nicholas_hi-res%20(3).jpg') center/cover no-repeat fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        #hero h1 { font-family: 'Amiri', serif; font-size: 6em; text-shadow: 0 4px 15px rgba(0,0,0,0.6); animation: fadeInDown 1.5s ease; }
+        #hero p { font-size: 2.2em; margin: 25px 0; animation: fadeInDown 1.5s 0.5s ease both; }
+        #hero button { 
+            padding: 22px 70px; 
+            background: linear-gradient(to right, #ffd700, #ffec80); 
+            border: none; 
+            color: #005f99; 
+            font-size: 1.8em; 
+            font-weight: bold;
+            cursor: pointer; 
+            border-radius: 50px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        #hero button:hover { 
+            transform: scale(1.15) translateY(-5px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+        }
+
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-60px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Professional Header */
+        header {
+            position: fixed; top: 0; width: 100%; background: linear-gradient(to bottom, rgba(0, 95, 153, 0.98), rgba(0, 95, 153, 0.9)); padding: 25px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: padding 0.5s, box-shadow 0.5s; backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        header.scrolled { padding: 15px 50px; box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
+        .logo { display: flex; align-items: center; color: white; font-family: 'Amiri', serif; font-size: 3em; transition: transform 0.3s; }
+        .logo:hover { transform: scale(1.05); }
+        .logo img { width: 90px; margin-left: 20px; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: transform 0.3s; }
+        .logo img:hover { transform: rotate(360deg); }
+        .header-right { display: flex; align-items: center; gap: 40px; }
+        nav ul { display: flex; list-style: none; gap: 40px; }
+        nav ul li a { color: white; text-decoration: none; font-size: 1.5em; position: relative; transition: color 0.3s, transform 0.3s; }
+        nav ul li a::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 4px; background: #ffd700; transition: width 0.3s; border-radius: 2px; }
+        nav ul li a:hover { color: #ffd700; transform: translateY(-3px); }
+        nav ul li a:hover::after { width: 100%; }
+        .header-info { display: flex; align-items: center; gap: 30px; font-size: 1.2em; color: white; }
+        .header-info i { margin-left: 8px; color: #ffd700; }
+        .header-info a { color: white; text-decoration: none; transition: color 0.3s; }
+        .header-info a:hover { color: #ffd700; }
+
+        /* Sections */
+        section { padding: 140px 10%; }
+        h2 { font-size: 4.5em; text-align: center; margin-bottom: 90px; color: #005f99; font-family: 'Amiri', serif; }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 60px;
+        }
+        .menu-item {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            transition: transform 0.6s, box-shadow 0.6s, border 0.6s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .menu-item:hover { transform: translateY(-30px) rotate(1deg); box-shadow: 0 30px 60px rgba(0,0,0,0.3); border: 2px solid #ffd700; }
+        .menu-item img { width: 100%; height: 350px; object-fit: cover; transition: transform 0.6s, filter 0.6s; }
+        .menu-item:hover img { transform: scale(1.2); filter: brightness(1.1); }
+        .menu-info { padding: 35px; text-align: center; transition: background 0.3s; }
+        .menu-item:hover .menu-info { background: rgba(255, 215, 0, 0.1); }
+        .menu-info h3 { font-size: 2.2em; margin-bottom: 20px; }
+        .menu-info p { font-size: 1.3em; color: #666; }
+
+        /* Modals Base */
+        .item-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 2000; opacity: 0; transition: opacity 0.5s; }
+        .item-modal.show { opacity: 1; }
+
+        /* Reservation Modal - Professional & Larger */
+        #reservation-modal .item-modal-content {
+            background: white;
+            padding: 60px 80px;
+            border-radius: 30px;
+            width: 90%;
+            max-width: 700px; /* كبرناها بشكل ملحوظ */
+            text-align: center;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.5s;
+            position: relative;
+        }
+        #reservation-modal.show .item-modal-content { transform: scale(1); }
+
+        #reservation-modal h3 {
+            font-size: 3em;
+            color: #005f99;
+            margin-bottom: 40px;
+            font-family: 'Amiri', serif;
+        }
+
+        #reservation-modal input,
+        #reservation-modal select,
+        #reservation-modal textarea {
+            width: 100%;
+            padding: 18px 20px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            font-size: 1.2em;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        #reservation-modal input:focus,
+        #reservation-modal select:focus,
+        #reservation-modal textarea:focus {
+            border-color: #005f99;
+            box-shadow: 0 0 15px rgba(0, 95, 153, 0.2);
+            outline: none;
+        }
+
+        #reservation-modal textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        #reservation-modal button {
+            padding: 20px 60px;
+            background: linear-gradient(to right, #005f99, #007bff);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        #reservation-modal button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 123, 255, 0.4);
+        }
+
+        /* Item Details Modal (keep same style) */
+        #item-modal .item-modal-content {
+            background: white;
+            padding: 60px;
+            border-radius: 30px;
+            width: 90%;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            transform: scale(0.9);
+            transition: transform 0.5s;
+            position: relative;
+        }
+        #item-modal.show .item-modal-content { transform: scale(1); }
+        #item-modal .item-modal-content img { width: 100%; height: 350px; object-fit: cover; border-radius: 20px; margin-bottom: 30px; }
+        #item-modal h3 { font-size: 2.8em; margin-bottom: 20px; }
+        #item-modal p { font-size: 1.6em; margin-bottom: 20px; }
+        #item-modal .details { font-size: 1.3em; color: #666; line-height: 1.8; }
+
+        .close-item { position: absolute; top: 20px; left: 30px; font-size: 3em; cursor: pointer; color: #999; transition: color 0.3s; }
+        .close-item:hover { color: #005f99; }
+
+        /* Contact */
+        #contact p { text-align: center; font-size: 2em; max-width: 1000px; margin: 0 auto 60px; }
+
+        /* Professional Footer */
+        footer {
+            background: linear-gradient(to top, #004d80, #005f99, #007bff); color: white; padding: 80px 50px 40px; font-size: 1.4em; position: relative; overflow: hidden;
+        }
+        footer::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://www.transparenttextures.com/patterns/wavecut.png'); opacity: 0.15; }
+        .footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; margin-bottom: 60px; }
+        .footer-column { flex: 1; min-width: 250px; }
+        .footer-column h3 { font-size: 1.8em; margin-bottom: 20px; color: #ffd700; }
+        .footer-column ul { list-style: none; }
+        .footer-column ul li { margin-bottom: 15px; }
+        .footer-column ul li a { color: white; text-decoration: none; transition: color 0.3s, padding-right 0.3s; }
+        .footer-column ul li a:hover { color: #ffd700; padding-right: 10px; }
+        .social-icons { display: flex; gap: 20px; margin-top: 20px; }
+        .social-icons a { font-size: 2em; color: white; transition: transform 0.3s, color 0.3s; }
+        .social-icons a:hover { transform: translateY(-5px); color: #ffd700; }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); }
+        .footer-bottom a { color: #ffd700; margin: 0 15px; text-decoration: none; transition: color 0.3s; }
+        .footer-bottom a:hover { color: white; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #hero h1 { font-size: 4em; }
+            #hero p { font-size: 1.5em; }
+            #hero button { padding: 18px 50px; font-size: 1.5em; }
+            header { padding: 15px 20px; flex-direction: column; gap: 15px; }
+            .header-right { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .header-info { font-size: 1em; gap: 15px; flex-wrap: wrap; justify-content: center; }
+            section { padding: 80px 5%; }
+            h2 { font-size: 3em; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .footer-top { flex-direction: column; }
+            #reservation-modal .item-modal-content,
+            #item-modal .item-modal-content { padding: 40px 30px; max-width: 95%; }
+            #reservation-modal h3 { font-size: 2.5em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="logo">
+            <img src="s2.jpg" alt="سمكيتو">
+            سمكيتو
+        </div>
+        <div class="header-right">
+            <nav>
+                <ul>
+                    <li><a href="#hero">الرئيسية</a></li>
+                    <li><a href="#menu">القائمة</a></li>
+                    <li><a href="#contact">تواصل</a></li>
+                </ul>
+            </nav>
+            <div class="header-info">
+                <span><i class="fas fa-phone"></i> 01234567890</span>
+                <span><i class="fas fa-clock"></i> يوميًا 12م - 12ص</span>
+                <a href="mailto:info@smakito.com"><i class="fas fa-envelope"></i> info@smakito.com</a>
+                <a href="#" onclick="openReservationModal(); return false;"><i class="fas fa-calendar-alt"></i> احجز الآن</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" data-aos="fade-down">
+        <h1>سمكيتو</h1>
+        <p>تجربة مأكولات بحرية فاخرة من أعماق المحيطات</p>
+        <button onclick="openReservationModal()">احجز طاولتك الآن</button>
+    </section>
+
+    <section id="menu">
+        <h2 data-aos="fade-up">قائمتنا الفاخرة</h2>
+        <div class="menu-grid">
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="100" onclick="showItemDetails('سمك مشوي بالأعشاب', 'طازج يوميًا مع خضروات مشوية - ٢٢٠ جنيه', 'مكونات: سمك طازج، أعشاب طازجة، ليمون، زيت زيتون. طريقة التحضير: مشوي على الفحم لنكهة دخانية فريدة.', 'https://thumbs.dreamstime.com/b/delicately-plated-seafood-dish-showcases-perfectly-grilled-fish-accompanied-tender-asparagus-savory-mushrooms-presented-361254246.jpg')">
+                <img src="https://thumbs.dreamstime.com/b/delicately-plated-seafood-dish-showcases-perfectly-grilled-fish-accompanied-tender-asparagus-savory-mushrooms-presented-361254246.jpg" alt="سمك مشوي بالأعشاب">
+                <div class="menu-info"><h3>سمك مشوي بالأعشاب</h3><p>طازج يوميًا مع خضروات مشوية - ٢٢٠ جنيه</p></div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="200" onclick="showItemDetails('محار مشوي بزبدة خاصة', 'نكهات بحرية فاخرة - ٢٥٠ جنيه', 'مكونات: محار طازج، زبدة، ثوم، بقدونس. طريقة التحضير: مشوي في الفرن مع صلصة خاصة.', 'https://www.foodandwine.com/thmb/1YEDLvU4qMwlsA3016hx-ODt93E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/bbq-oysters-with-uni-butter-FT-RECIPE0521-b85132723c58463f839ffbd32686613b.jpg')">
+                <img src="https://www.foodandwine.com/thmb/1YEDLvU4qMwlsA3016hx-ODt93E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/bbq-oysters-with-uni-butter-FT-RECIPE0521-b85132723c58463f839ffbd32686613b.jpg" alt="محار مشوي">
+                <div class="menu-info"><h3>محار مشوي بزبدة خاصة</h3><p>نكهات بحرية فاخرة - ٢٥٠ جنيه</p></div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="300" onclick="showItemDetails('سمك السيف المشوي', 'مع طماطم طازجة - ٢٨٠ جنيه', 'مكونات: سمك سيف، طماطم، بصل، فلفل. طريقة التحضير: مشوي مع توابل متوسطية.', 'https://assets.epicurious.com/photos/63650555ffa891d39b916b94/4:3/w_1496,h_1122,c_limit/0621-Grilled%20Swordfish%20With%20Tomatoes.jpg')">
+                <img src="https://assets.epicurious.com/photos/63650555ffa891d39b916b94/4:3/w_1496,h_1122,c_limit/0621-Grilled%20Swordfish%20With%20Tomatoes.jpg" alt="سمك السيف المشوي">
+                <div class="menu-info"><h3>سمك السيف المشوي</h3><p>مع طماطم طازجة - ٢٨٠ جنيه</p></div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="400" onclick="showItemDetails('طبق بحري مشكل', 'أشهى المأكولات البحرية - ٣٠٠ جنيه', 'مكونات: جمبري، كاليماري، أخطبوط. طريقة التحضير: مقلي أو مشوي حسب الطلب.', 'https://platform.boston.eater.com/wp-content/uploads/sites/4/chorus/uploads/chorus_asset/file/25749506/Kaia___26.jpg?quality=90&strip=all&crop=0%2C0.004203446826395%2C100%2C99.991593106347&w=2400')">
+                <img src="https://platform.boston.eater.com/wp-content/uploads/sites/4/chorus/uploads/chorus_asset/file/25749506/Kaia___26.jpg?quality=90&strip=all&crop=0%2C0.004203446826395%2C100%2C99.991593106347&w=2400" alt="طبق بحري مشكل">
+                <div class="menu-info"><h3>طبق بحري مشكل</h3><p>أشهى المأكولات البحرية - ٣٠٠ جنيه</p></div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="500" onclick="showItemDetails('سمك البحر المشوي', 'نكهة أصيلة - ٢٤٠ جنيه', 'مكونات: سمك بحري، توابل عربية. طريقة التحضير: مشوي ببطء للحفاظ على العصارة.', 'https://www.saveur.com/uploads/2025/06/LACIVERT_Lakerda-and-Raki-and-Grilled-Sea-Bream_0000616x9crop-1-scaled.jpg?auto=webp&width=2000&height=1125')">
+                <img src="https://www.saveur.com/uploads/2025/06/LACIVERT_Lakerda-and-Raki-and-Grilled-Sea-Bream_0000616x9crop-1-scaled.jpg?auto=webp&width=2000&height=1125" alt="سمك البحر المشوي">
+                <div class="menu-info"><h3>سمك البحر المشوي</h3><p>نكهة أصيلة - ٢٤٠ جنيه</p></div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="600" onclick="showItemDetails('طبق تقديم فاخر', 'فن التقديم البحري - ٢٦٠ جنيه', 'مكونات: مزيج بحري، خضروات عضوية. طريقة التحضير: تقديم فني مع صلصات خاصة.', 'https://berriesandspice.com/wp-content/uploads/2018/08/Berries-and-Spice-How-to-plate-dishes-worthy-of-a-fine-dining-restaurant-the-complete-guide-23-scaled.jpg')">
+                <img src="https://berriesandspice.com/wp-content/uploads/2018/08/Berries-and-Spice-How-to-plate-dishes-worthy-of-a-fine-dining-restaurant-the-complete-guide-23-scaled.jpg" alt="طبق تقديم فاخر">
+                <div class="menu-info"><h3>طبق تقديم فاخر</h3><p>فن التقديم البحري - ٢٦٠ جنيه</p></div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="700" onclick="showItemDetails('لوبستر ثيرميدور', 'كلاسيكية فاخرة - ٤٥٠ جنيه', 'مكونات: لوبستر طازج، كريمة، جبن. طريقة التحضير: محشو ومخبوز في الفرن.', 'https://www.foodandwine.com/thmb/aTAmotbtG72fdSN7Lw077Jv5Flg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/lobster-thermidor-FT-RECIPE0621-74e5a3b2e07d488bb03b5868b389877f.jpg')">
+                <img src="https://www.foodandwine.com/thmb/aTAmotbtG72fdSN7Lw077Jv5Flg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/lobster-thermidor-FT-RECIPE0621-74e5a3b2e07d488bb03b5868b389877f.jpg" alt="لوبستر ثيرميدور">
+                <div class="menu-info"><h3>لوبستر ثيرميدور</h3><p>كلاسيكية فاخرة - ٤٥٠ جنيه</p></div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="800" onclick="showItemDetails('سمك مقلي أنيق', 'تقديم راقي - ٢١٠ جنيه', 'مكونات: سمك طازج، عجينة مقرمشة. طريقة التحضير: مقلي حتى الذهبي مع صلصة تارتار.', 'https://www.shutterstock.com/image-photo/elegant-plated-dish-featuring-panseared-260nw-2453340789.jpg')">
+                <img src="https://www.shutterstock.com/image-photo/elegant-plated-dish-featuring-panseared-260nw-2453340789.jpg" alt="سمك مقلي أنيق">
+                <div class="menu-info"><h3>سمك مقلي أنيق</h3><p>تقديم راقي - ٢١٠ جنيه</p></div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="900" onclick="showItemDetails('جمبري بالثوم', 'نكهة حارة - ١٩٠ جنيه', 'مكونات: جمبري طازج، ثوم، فلفل حار. طريقة التحضير: مقلي في زيت الزيتون.', 'https://popmenucloud.com/cdn-cgi/image/width%3D1200%2Cheight%3D1200%2Cfit%3Dscale-down%2Cformat%3Dauto%2Cquality%3D60/hrglswce/12726705-2f0f-4920-ad4c-2db230edcef9.jpg')">
+                <img src="https://popmenucloud.com/cdn-cgi/image/width%3D1200%2Cheight%3D1200%2Cfit%3Dscale-down%2Cformat%3Dauto%2Cquality%3D60/hrglswce/12726705-2f0f-4920-ad4c-2db230edcef9.jpg" alt="جمبري بالثوم">
+                <div class="menu-info"><h3>جمبري بالثوم</h3><p>نكهة حارة - ١٩٠ جنيه</p></div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="1000" onclick="showItemDetails('سلطة بحرية', 'طازجة وصحية - ١٥٠ جنيه', 'مكونات: مأكولات بحرية مختلطة، خضروات. طريقة التحضير: مزج طازج مع صلصة ليمون.', 'https://www.seriouseats.com/thmb/br9MKNo7Jr43OVw6LI-dDKpiuvE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2016__03__20160201-seafood-salad-vicky-wasik-17-372b5145e0d6494a9b5d58dcc0b7243d.jpg')">
+                <img src="https://www.seriouseats.com/thmb/br9MKNo7Jr43OVw6LI-dDKpiuvE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2016__03__20160201-seafood-salad-vicky-wasik-17-372b5145e0d6494a9b5d58dcc0b7243d.jpg" alt="سلطة بحرية">
+                <div class="menu-info"><h3>سلطة بحرية</h3><p>طازجة وصحية - ١٥٠ جنيه</p></div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="1100" onclick="showItemDetails('برانزينو مشوي', 'مع زبدة الكابر - ٢٢٠ جنيه', 'مكونات: برانزينو، زبدة، كابر. طريقة التحضير: مشوي كامل مع توابل.', 'https://www.foodandwine.com/thmb/f1wCZqHCdvVsh4CkKZgm7P5j5K8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Roasted-Branzino-with-Caper-Butter-FT-BLOG0522-f1d2116430c0420c821cbd8f95c4aa77.jpg')">
+                <img src="https://www.foodandwine.com/thmb/f1wCZqHCdvVsh4CkKZgm7P5j5K8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Roasted-Branzino-with-Caper-Butter-FT-BLOG0522-f1d2116430c0420c821cbd8f95c4aa77.jpg" alt="برانزينو مشوي">
+                <div class="menu-info"><h3>برانزينو مشوي</h3><p>مع زبدة الكابر - ٢٢٠ جنيه</p></div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="1200" onclick="showItemDetails('كاليماري مقلي', 'مقرمش وشهي - ١٨٠ جنيه', 'مكونات: كاليماري، عجينة. طريقة التحضير: مقلي مع صلصة.', 'https://www.foodandwine.com/thmb/ClPnka2WSnl5PtrMYOjlmXsXw1k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/escovitch-fish-FT-RECIPE0920-8a733638c2ba4b72b48737782fa616c2.jpg')">
+                <img src="https://www.foodandwine.com/thmb/ClPnka2WSnl5PtrMYOjlmXsXw1k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/escovitch-fish-FT-RECIPE0920-8a733638c2ba4b72b48737782fa616c2.jpg" alt="كاليماري مقلي">
+                <div class="menu-info"><h3>كاليماري مقلي</h3><p>مقرمش وشهي - ١٨٠ جنيه</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" data-aos="fade-up">
+        <h2>تواصل معنا</h2>
+        <p>للحجوزات أو الاستفسارات: 01234567890 | info@smakito.com<br>العنوان: شارع البحر الرئيسي، القاهرة</p>
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-column">
+                <h3>سمكيتو</h3>
+                <p>مطعم مأكولات بحرية فاخرة نقدم فيه أشهى الأطباق الطازجة يوميًا من قلب البحر.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="#hero">الرئيسية</a></li>
+                    <li><a href="#menu">القائمة</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                    <li><a href="#" onclick="openReservationModal(); return false;">احجز طاولة</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>ساعات العمل</h3>
+                <ul>
+                    <li>الأحد - الخميس: 12:00 م - 12:00 ص</li>
+                    <li>الجمعة والسبت: 12:00 م - 1:00 ص</li>
+                    <li>العطلات الرسمية: مفتوح</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>تواصل معنا</h3>
+                <ul>
+                    <li><i class="fas fa-phone"></i> 01234567890</li>
+                    <li><i class="fas fa-envelope"></i> info@smakito.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> شارع البحر الرئيسي، القاهرة</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 سمكيتو - جميع الحقوق محفوظة |
+            <a href="#">سياسة الخصوصية</a> |
+            <a href="#">شروط الاستخدام</a>
+        </div>
+    </footer>
+
+    <!-- Reservation Modal -->
+    <div id="reservation-modal" class="item-modal">
+        <div class="item-modal-content">
+            <span class="close-item" onclick="closeReservationModal()">&times;</span>
+            <h3>احجز طاولتك</h3>
+            <input type="text" placeholder="الاسم">
+            <input type="tel" placeholder="رقم الهاتف">
+            <input type="date">
+            <input type="time">
+            <select><option>عدد الأشخاص</option><option>1-2</option><option>3-4</option><option>5-8</option><option>8+</option></select>
+            <textarea placeholder="ملاحظات إضافية (اختياري)" rows="4"></textarea>
+            <button>تأكيد الحجز</button>
+        </div>
+    </div>
+
+    <!-- Item Details Modal -->
+    <div id="item-modal" class="item-modal">
+        <div class="item-modal-content">
+            <span class="close-item" onclick="closeItemModal()">&times;</span>
+            <img id="item-img" src="">
+            <h3 id="item-title"></h3>
+            <p id="item-price"></p>
+            <div class="details" id="item-details"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1500, once: true });
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                if (!a.getAttribute('onclick')) {
+                    e.preventDefault();
+                    document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        function openReservationModal() {
+            const modal = document.getElementById('reservation-modal');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function closeReservationModal() {
+            const modal = document.getElementById('reservation-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 500);
+        }
+
+        function showItemDetails(title, price, details, imgSrc) {
+            document.getElementById('item-title').textContent = title;
+            document.getElementById('item-price').textContent = price;
+            document.getElementById('item-details').textContent = details;
+            document.getElementById('item-img').src = imgSrc;
+            const modal = document.getElementById('item-modal');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function closeItemModal() {
+            const modal = document.getElementById('item-modal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 500);
+        }
+
+        window.onclick = function(event) {
+            const resModal = document.getElementById('reservation-modal');
+            const itemModal = document.getElementById('item-modal');
+            if (event.target == resModal) closeReservationModal();
+            if (event.target == itemModal) closeItemModal();
+        }
+    </script>
+</body>
+</html>
