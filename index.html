@@ -145,47 +145,80 @@
         .footer-bottom a { color: #ffd700; margin: 0 15px; text-decoration: none; transition: color 0.3s; }
         .footer-bottom a:hover { color: white; }
 
-        /* Responsive Adjustments - مقاسات طبيعية ومتوازنة */
-        @media (max-width: 1024px) {
-            #hero h1 { font-size: 4.5rem; }
-            #hero p { font-size: 1.6rem; }
-            #hero button { padding: 16px 50px; font-size: 1.5rem; }
-            header { padding: 16px 30px; }
-            .logo { font-size: 2.2rem; }
-            nav ul { gap: 25px; }
-            nav ul li a { font-size: 1.2rem; }
-            .header-info { gap: 20px; font-size: 1rem; }
-        }
+        /* Mobile-Specific Adjustments - خصوصًا للهيدر */
         @media (max-width: 768px) {
-            #hero h1 { font-size: 3.5rem; }
-            #hero p { font-size: 1.4rem; }
+            #hero h1 { font-size: 3.2rem; }
+            #hero p { font-size: 1.3rem; }
             #hero button { padding: 14px 40px; font-size: 1.3rem; }
-            header { padding: 12px 20px; flex-direction: column; gap: 15px; }
-            .header-right { flex-direction: column; gap: 15px; text-align: center; }
-            .header-info { flex-wrap: wrap; justify-content: center; gap: 15px; font-size: 0.95rem; }
-            section { padding: 80px 5%; }
-            h2 { font-size: 2.8rem; }
+
+            header {
+                padding: 12px 15px;
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+            header.scrolled { padding: 10px 15px; }
+
+            .logo { font-size: 2rem; }
+            .logo img { width: 55px; margin-left: 10px; }
+
+            .header-right {
+                width: 100%;
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+                text-align: center;
+            }
+            nav ul li a { font-size: 1.2rem; }
+
+            .header-info {
+                flex-direction: column;
+                gap: 10px;
+                font-size: 0.95rem;
+                width: 100%;
+                text-align: center;
+            }
+            .header-info span, .header-info a { justify-content: center; }
+
+            section { padding: 70px 5%; }
+            h2 { font-size: 2.6rem; }
+            h2::after { width: 100px; }
+
             .menu-grid { gap: 30px; }
             .menu-item img { height: 220px; }
-            .menu-info { padding: 20px; }
-            .menu-info h3 { font-size: 1.6rem; }
-            .menu-info p { font-size: 1.1rem; }
-            #reservation-modal .item-modal-content,
-            #item-modal .item-modal-content { padding: 40px 30px; max-width: 95%; }
-            #reservation-modal h3 { font-size: 2.2rem; }
-            footer { padding: 60px 20px 30px; }
-            .footer-top { gap: 30px; }
-        }
-        @media (max-width: 480px) {
-            #hero h1 { font-size: 3rem; }
-            #hero p { font-size: 1.2rem; }
-            #hero button { padding: 12px 35px; font-size: 1.2rem; }
-            .logo { font-size: 2rem; }
-            .logo img { width: 60px; }
-            nav ul { gap: 15px; flex-wrap: wrap; justify-content: center; }
-            nav ul li a { font-size: 1.1rem; }
-            h2 { font-size: 2.5rem; }
+            .menu-info { padding: 18px; }
             .menu-info h3 { font-size: 1.5rem; }
+            .menu-info p { font-size: 1.1rem; }
+
+            #reservation-modal .item-modal-content,
+            #item-modal .item-modal-content { padding: 35px 25px; max-width: 95%; }
+            #reservation-modal h3 { font-size: 2rem; }
+
+            footer { padding: 60px 20px 30px; }
+            .footer-top { gap: 35px; }
+            .footer-column { text-align: center; }
+            .social-icons { justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            #hero h1 { font-size: 2.8rem; }
+            #hero p { font-size: 1.1rem; }
+            #hero button { padding: 12px 35px; font-size: 1.2rem; }
+
+            .logo { font-size: 1.8rem; }
+            .logo img { width: 50px; }
+
+            nav ul li a { font-size: 1.1rem; }
+            .header-info { font-size: 0.9rem; }
+
+            h2 { font-size: 2.3rem; }
+            .menu-info h3 { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -328,7 +361,7 @@
         <div class="item-modal-content">
             <span class="close-item" onclick="closeReservationModal()">&times;</span>
             <h3>احجز طاولتك</h3>
-            <input type="text" placeholder="الاسم">
+            <input type="text" placeholder="الاسم الكريم">
             <input type="tel" placeholder="رقم الهاتف">
             <input type="date">
             <input type="time">
